@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/prod?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: prod_user
+    password: prodpass
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      database-platform:org.hibernate.dialect.MySQL5InnoDBDialect
+      database: mysql
+      show-sql: false

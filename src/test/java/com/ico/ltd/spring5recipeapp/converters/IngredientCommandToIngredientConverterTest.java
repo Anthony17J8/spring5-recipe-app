@@ -3,25 +3,24 @@ package com.ico.ltd.spring5recipeapp.converters;
 import com.ico.ltd.spring5recipeapp.commands.IngredientCommand;
 import com.ico.ltd.spring5recipeapp.commands.UnitOfMeasureCommand;
 import com.ico.ltd.spring5recipeapp.domain.Ingredient;
-import com.ico.ltd.spring5recipeapp.domain.Recipe;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class IngredientCommandToIngredientConverterTest {
-
-    private static final Recipe RECIPE = new Recipe();
 
     private static final BigDecimal AMOUNT = new BigDecimal("1");
 
     private static final String DESCRIPTION = "Cheeseburger";
 
-    private static final Long ID_VALUE = 1L;
+    private static final String ID_VALUE = "1";
 
-    private static final Long UOM_ID = 2L;
+    private static final String UOM_ID = "2";
 
     private IngredientCommandToIngredientConverter converter;
 

@@ -11,9 +11,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class IngredientCommand {
 
-    private Long id;
+    private String id;
 
-    private Long recipeId;
+    private String recipeId;
 
     private String description;
 

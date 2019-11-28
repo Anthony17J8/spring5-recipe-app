@@ -5,6 +5,7 @@ import com.ico.ltd.spring5recipeapp.converters.RecipeCommandToRecipeConverter;
 import com.ico.ltd.spring5recipeapp.converters.RecipeToRecipeCommandConverter;
 import com.ico.ltd.spring5recipeapp.domain.Recipe;
 import com.ico.ltd.spring5recipeapp.repositories.RecipeRepository;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RecipeServiceIT {

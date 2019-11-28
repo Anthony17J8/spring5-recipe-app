@@ -18,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class RecipeCommand {
 
-    private Long id;
+    private String id;
 
     @NotBlank
     @Size(min = 3, max = 255)
@@ -27,7 +27,6 @@ public class RecipeCommand {
     @Min(1)
     @Max(999)
     private Integer prepTime;
-
 
     @Min(1)
     @Max(999)

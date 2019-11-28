@@ -3,6 +3,7 @@ spring:
     url: jdbc:mysql://localhost:3306/prod?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: prod_user
     password: prodpass
+    platform: mysql
   jpa:
     hibernate:
       ddl-auto: validate

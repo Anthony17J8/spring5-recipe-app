@@ -2,18 +2,17 @@ package com.ico.ltd.spring5recipeapp.converters;
 
 import com.ico.ltd.spring5recipeapp.commands.IngredientCommand;
 import com.ico.ltd.spring5recipeapp.domain.Ingredient;
-import com.ico.ltd.spring5recipeapp.domain.Recipe;
 import com.ico.ltd.spring5recipeapp.domain.UnitOfMeasure;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class IngredientToIngredientCommandConverterTest {
-
-    private static final Recipe RECIPE = new Recipe();
 
     private static final BigDecimal AMOUNT = new BigDecimal("1");
 
@@ -46,7 +45,6 @@ public class IngredientToIngredientCommandConverterTest {
         //given
         Ingredient ingredient = new Ingredient();
         ingredient.setId(ID_VALUE);
-        ingredient.setRecipe(RECIPE);
         ingredient.setAmount(AMOUNT);
         ingredient.setDescription(DESCRIPTION);
         ingredient.setUom(null);
@@ -65,7 +63,6 @@ public class IngredientToIngredientCommandConverterTest {
         //given
         Ingredient ingredient = new Ingredient();
         ingredient.setId(ID_VALUE);
-        ingredient.setRecipe(RECIPE);
         ingredient.setAmount(AMOUNT);
         ingredient.setDescription(DESCRIPTION);
 

@@ -3,6 +3,8 @@ package com.ico.ltd.spring5recipeapp.domain;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.math.BigDecimal;
 
@@ -11,6 +13,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(exclude = {"recipe"})
 public class Ingredient {
 
+    @Id
     private String id;
 
     private String description;
@@ -19,6 +22,7 @@ public class Ingredient {
 
     private Recipe recipe;
 
+    @DBRef
     private UnitOfMeasure uom;
 
     public Ingredient() {
@@ -34,7 +38,6 @@ public class Ingredient {
         this.description = description;
         this.amount = amount;
         this.uom = uom;
-        this.recipe = recipe;
     }
 
 }

@@ -9,6 +9,7 @@ import com.ico.ltd.spring5recipeapp.domain.UnitOfMeasure;
 import com.ico.ltd.spring5recipeapp.repositories.CategoryRepository;
 import com.ico.ltd.spring5recipeapp.repositories.RecipeRepository;
 import com.ico.ltd.spring5recipeapp.repositories.UnitOfMeasureRepository;
+import com.ico.ltd.spring5recipeapp.repositories.reactive.UnitOfMeasureReactiveRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -34,6 +35,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     private final UnitOfMeasureRepository unitOfMeasureRepository;
 
     @Autowired
+    private UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository;
+
+    @Autowired
     public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository,
                            UnitOfMeasureRepository unitOfMeasureRepository) {
         this.categoryRepository = categoryRepository;
@@ -48,6 +52,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         loadUom();
         recipeRepository.saveAll(getRecipes());
         log.debug("Loading Bootstrap Data");
+
+        log.error("######");
+        log.error(unitOfMeasureReactiveRepository.count().block().toString());
     }
 
     private void loadCategories(){

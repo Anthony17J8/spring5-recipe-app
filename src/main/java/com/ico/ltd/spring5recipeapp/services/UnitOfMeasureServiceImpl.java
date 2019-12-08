@@ -2,33 +2,28 @@ package com.ico.ltd.spring5recipeapp.services;
 
 import com.ico.ltd.spring5recipeapp.commands.UnitOfMeasureCommand;
 import com.ico.ltd.spring5recipeapp.converters.UnitOfMeasureToUnitOfMeasureCommandConverter;
-import com.ico.ltd.spring5recipeapp.repositories.UnitOfMeasureRepository;
+import com.ico.ltd.spring5recipeapp.repositories.reactive.UnitOfMeasureReactiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import reactor.core.publisher.Flux;
 
 @Component
 public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
-    private final UnitOfMeasureRepository unitOfMeasureRepository;
+    private final UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository;
 
     private final UnitOfMeasureToUnitOfMeasureCommandConverter toUnitOfMeasureCommandConverter;
 
     @Autowired
-    public UnitOfMeasureServiceImpl(UnitOfMeasureRepository unitOfMeasureRepository, UnitOfMeasureToUnitOfMeasureCommandConverter toUnitOfMeasureCommandConverter) {
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public UnitOfMeasureServiceImpl(UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository, UnitOfMeasureToUnitOfMeasureCommandConverter toUnitOfMeasureCommandConverter) {
+        this.unitOfMeasureReactiveRepository = unitOfMeasureReactiveRepository;
         this.toUnitOfMeasureCommandConverter = toUnitOfMeasureCommandConverter;
     }
 
     @Override
-    public Set<UnitOfMeasureCommand> listAllUoms() {
-        return StreamSupport.stream(
-                unitOfMeasureRepository.findAll().spliterator(), false
-        )
-                .map(toUnitOfMeasureCommandConverter::convert)
-                .collect(Collectors.toSet());
+    public Flux<UnitOfMeasureCommand> listAllUoms() {
+        return unitOfMeasureReactiveRepository
+                .findAll()
+                .map(toUnitOfMeasureCommandConverter::convert);
     }
 }

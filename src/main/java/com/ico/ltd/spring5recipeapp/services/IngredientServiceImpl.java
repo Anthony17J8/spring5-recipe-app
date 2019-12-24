@@ -10,7 +10,6 @@ import com.ico.ltd.spring5recipeapp.repositories.reactive.UnitOfMeasureReactiveR
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
 import java.util.Optional;
@@ -54,7 +53,6 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    @Transactional
     public Mono<IngredientCommand> saveIngredientCommand(IngredientCommand command) {
         Recipe recipe = recipeReactiveRepository.findById(command.getRecipeId()).block();
 
@@ -111,7 +109,6 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    @Transactional
     public Mono<Void> deleteByRecipeIdAndIngredientId(String recipeId, String id) {
 
         log.debug("Deleting ingredient: " + recipeId + ":" + id);

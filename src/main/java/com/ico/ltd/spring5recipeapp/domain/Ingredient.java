@@ -2,7 +2,6 @@ package com.ico.ltd.spring5recipeapp.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -17,7 +16,6 @@ public class Ingredient {
 
     private BigDecimal amount;
 
-    @DBRef
     private UnitOfMeasure uom;
 
     public Ingredient() {

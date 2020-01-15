@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import reactor.core.publisher.Flux;
 
 @Slf4j
 @Controller
@@ -69,7 +70,6 @@ public class IngredientController {
         model.addAttribute("ingredient",
                 ingredientService.findByRecipeIdAndIngredientId(recipeId, id).block());
 
-        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
         return "recipe/ingredient/ingredientform";
     }
 
@@ -81,7 +81,6 @@ public class IngredientController {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> log.debug(err.toString()));
 
-            model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
             return "recipe/ingredient/ingredientform";
         }
 
@@ -107,8 +106,6 @@ public class IngredientController {
         //init uom
         ingredientCommand.setUom(new UnitOfMeasureCommand());
 
-        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
-
         return "recipe/ingredient/ingredientform";
     }
 
@@ -117,5 +114,10 @@ public class IngredientController {
         log.debug("Deleting ingredient id:" + id);
         ingredientService.deleteByRecipeIdAndIngredientId(recipeId, id).block();
         return "redirect:/recipe/" + recipeId + "/ingredients";
+    }
+
+    @ModelAttribute(name = "uomList")
+    public Flux<UnitOfMeasureCommand> populateUomList() {
+        return unitOfMeasureService.listAllUoms();
     }
 }
